@@ -1,0 +1,1309 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Central de Chamados — TI</title>
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+</head>
+
+<body>
+
+    <div class="app">
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <img
+                    src="~/images/logUni.jpg"
+                    class="logo-sidebar"
+                    alt="UniFamec" />
+
+                <div>
+                    <div class="brand-text">
+                        helpdesk.ti
+                    </div>
+
+                    <div class="brand-sub">
+                        UniFamec
+                    </div>
+                </div>
+
+            </div>
+
+
+            <nav class="nav">
+
+                <div class="nav-item active" id="navTodos">
+                    <span class="nav-icon">▤</span>
+                    Todos os chamados
+                </div>
+
+                <div class="nav-item" id="navAbertos">
+                    <span class="nav-icon">◔</span>
+                    Em aberto
+                </div>
+
+                <div class="nav-item" id="navAndamento">
+                    <span class="nav-icon">◑</span>
+                    Em andamento
+                </div>
+
+                <div class="nav-item" id="navResolvidos">
+                    <span class="nav-icon">◉</span>
+                    Resolvidos
+                </div>
+
+            </nav>
+
+
+            <button class="btn-new" id="btnOpenNew">
+                + Novo chamado
+            </button>
+
+
+            <button class="btn-ghost" id="btnOpenUser">
+                + Cadastrar usuário
+            </button>
+
+
+            <button class="btn-ghost" id="btnOpenUsers">
+                👥 Usuários cadastrados
+            </button>
+
+
+            <div class="sidebar-foot">
+
+                <div class="user-chip">
+
+                    <div class="user-avatar">
+                        MS
+                    </div>
+
+                    <div class="user-info">
+
+                        <div class="user-name">
+                            Usuário
+                        </div>
+
+                        <div class="user-role">
+                            Administrador de TI
+                        </div>
+
+                    </div>
+
+                    <div class="user-actions">
+
+                        <button class="btn-account" id="btnOpenAccount">
+                            Minha Conta
+                        </button>
+
+                        <button class="btn-account">
+                            sair
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <main class="main">
+
+            <div class="topbar">
+
+                <div>
+
+                    <div class="page-title">
+                        Central de Chamados — TI
+                    </div>
+
+                    <div class="page-sub">
+                        Registre, acompanhe e resolva solicitações de suporte técnico.
+                    </div>
+
+                </div>
+
+                <div class="clock">
+                    12 set 2026 · 16:30
+                </div>
+
+            </div>
+
+            <div class="stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-num" id="statAberto">
+                        3
+                    </div>
+
+                    <div class="stat-label">
+                        <span class="stat-dot aberto"></span>
+                        Aberto agora
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-num" id="statAndamento">
+                        2
+                    </div>
+
+                    <div class="stat-label">
+                        <span class="stat-dot andamento"></span>
+                        Em andamento
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-num" id="statAguardando">
+                        1
+                    </div>
+
+                    <div class="stat-label">
+                        <span class="stat-dot aguardando"></span>
+                        Aguardando
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-num" id="statResolvido">
+                        4
+                    </div>
+
+                    <div class="stat-label">
+                        <span class="stat-dot resolvido"></span>
+                        Resolvidos hoje
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    class="search"
+                    placeholder="Buscar por título, solicitante ou nº do chamado..." />
+
+
+                <select class="filter">
+
+                    <option>Status: todos</option>
+
+                    <option>Aberto</option>
+
+                    <option>Em andamento</option>
+
+                    <option>Aguardando</option>
+
+                    <option>Resolvido</option>
+
+                    <option>Fechado</option>
+
+                </select>
+
+
+                <select class="filter">
+
+                    <option>Prioridade: todas</option>
+
+                    <option>Baixa</option>
+
+                    <option>Média</option>
+
+                    <option>Alta</option>
+
+                    <option>Crítica</option>
+
+                </select>
+
+
+                <select class="filter">
+
+                    <option>Categoria: todas</option>
+
+                    <option>Hardware</option>
+
+                    <option>Software</option>
+
+                    <option>Rede</option>
+
+                    <option>Acesso e senha</option>
+
+                    <option>Outro</option>
+
+                </select>
+
+
+                <button class="btn-export">
+                    ⭳ Exportar Excel
+                </button>
+
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Chamado</th>
+
+                            <th>Solicitante</th>
+
+                            <th>Categoria</th>
+
+                            <th>Prioridade</th>
+
+                            <th>Status</th>
+
+                            <th>Aberto em</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr class="ticket-row" data-ticket="INC-2026-0001">
+
+                            <td>
+
+                                <div class="id-cell">
+
+                                    <span class="status-dot aberto"></span>
+
+                                    INC-2026-0001        
+
+                                </div>
+
+                                <div class="ticket-title">
+                                    Notebook não liga após queda de energia
+                                </div>
+
+                                <div class="ticket-meta">
+                                    Hardware
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                Fulano
+
+                                <div class="ticket-meta">
+                                    Coordenação de Medicina
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Hardware
+                            </td>
+
+
+                            <td>
+                                <span class="badge prioridade-alta">
+                                    Alta
+                                </span>
+                            </td>
+
+
+                            <td>
+                                <span class="badge status-andamento">
+                                    Em andamento
+                                </span>
+                            </td>
+
+
+                            <td class="time-mono">
+                                11/09/2026 14:30
+                            </td>
+
+                        </tr>
+
+
+                        <tr class="ticket-row" data-ticket="INC-2026-0002">
+
+                            <td>
+
+                                <div class="id-cell">
+
+                                    <span class="status-dot aberto"></span>
+
+                                        INC-2026-0002
+                                </div>
+
+                                <div class="ticket-title">
+                                    Problema de acesso ao sistema
+                                </div>
+
+                                <div class="ticket-meta">
+                                    Acesso e senha
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                Fulano
+
+                                <div class="ticket-meta">
+                                    Coordenação de Medicina
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Acesso e senha
+                            </td>
+
+
+                            <td>
+                                <span class="badge prioridade-media">
+                                    Média
+                                </span>
+                            </td>
+
+
+                            <td>
+                                <span class="badge status-aberto">
+                                    Aberto
+                                </span>
+                            </td>
+
+
+                            <td class="time-mono">
+                                12/09/2026 09:15
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+  
+<div class="overlay" id="overlay"></div>
+
+<div class="drawer" id="drawerNew">
+
+    <div class="drawer-head">
+
+        <div>
+
+            <h3>Novo chamado</h3>
+
+            <div class="drawer-sub">
+                Descreva o problema com o máximo de detalhes.
+            </div>
+
+        </div>
+
+        <button class="drawer-close" id="btnCloseNew">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="drawer-body">
+
+        <div class="field">
+
+            <label for="fTitle">
+                Título
+            </label>
+
+            <input
+                type="text"
+                id="fTitle"
+                placeholder="Ex: Impressora do 3º andar não imprime" />
+
+        </div>
+
+
+        <div class="field-row">
+
+            <div class="field">
+
+                <label for="fRequester">
+                    Solicitante
+                </label>
+
+                <input
+                    type="text"
+                    id="fRequester"
+                    placeholder="Nome do usuário" />
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="fSector">
+                    Setor
+                </label>
+
+                <input
+                    type="text"
+                    id="fSector"
+                    placeholder="Ex: Financeiro" />
+
+            </div>
+
+        </div>
+
+
+        <div class="field-row">
+
+            <div class="field">
+
+                <label for="fCategory">
+                    Categoria
+                </label>
+
+                <select id="fCategory">
+
+                    <option>Hardware</option>
+                    <option>Software</option>
+                    <option>Rede</option>
+                    <option>Acesso e senha</option>
+                    <option>Outro</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="fPriority">
+                    Prioridade
+                </label>
+
+                <select id="fPriority">
+
+                    <option>Baixa</option>
+                    <option selected>Média</option>
+                    <option>Alta</option>
+                    <option>Crítica</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="fDesc">
+                Descrição do problema
+            </label>
+
+            <textarea
+                id="fDesc"
+                placeholder="O que aconteceu? Quando começou? Já tentou alguma solução?"></textarea>
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-foot">
+
+        <button
+            type="button"
+            class="drawer-cancel"
+            id="btnCancelNew">
+
+            Cancelar
+
+        </button>
+
+
+        <button
+            type="button"
+            class="drawer-submit">
+
+            Abrir chamado
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="drawer" id="drawerDetail">
+
+    <div class="drawer-head">
+
+        <div>
+
+            <h3 id="dTitle">
+                Notebook não liga após queda de energia
+            </h3>
+
+            <div class="drawer-sub" id="dId">
+                INC-2026-0001
+            </div>
+
+        </div>
+
+        <button
+            class="drawer-close"
+            id="btnCloseDetail">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="drawer-body">
+
+        <div class="field">
+
+            <label>
+                Solicitante
+            </label>
+
+            <div class="detail-value">
+                Fulano
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Descrição
+            </label>
+
+            <div class="detail-desc">
+                O notebook não liga após uma queda de energia.
+                O equipamento estava funcionando normalmente antes do ocorrido.
+            </div>
+
+        </div>
+
+
+        <div class="field-row">
+
+            <div class="field">
+
+                <label for="dStatus">
+                    Status
+                </label>
+
+                <select id="dStatus">
+
+                    <option>Aberto</option>
+                    <option>Em andamento</option>
+                    <option>Aguardando</option>
+                    <option>Resolvido</option>
+                    <option>Fechado</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="dPriority">
+                    Prioridade
+                </label>
+
+                <select id="dPriority">
+
+                    <option>Baixa</option>
+                    <option selected>Média</option>
+                    <option>Alta</option>
+                    <option>Crítica</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="dAssignee">
+                Técnico responsável
+            </label>
+
+            <input
+                type="text"
+                id="dAssignee"
+                placeholder="Não atribuído" />
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Notas internas
+            </label>
+
+            <div class="notes-list">
+
+                <div class="note-item">
+
+                    <div class="note-author">
+                        Técnico de TI
+                    </div>
+
+                    <div class="note-text">
+                        Equipamento encaminhado para análise.
+                    </div>
+
+                </div>
+
+            </div>
+
+            <textarea
+                id="fNote"
+                placeholder="Adicionar nota de atendimento..."></textarea>
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-foot">
+
+        <button
+            type="button"
+            class="drawer-cancel"
+            id="btnCancelDetail">
+
+            Fechar
+
+        </button>
+
+
+        <button
+            type="button"
+            class="drawer-submit">
+
+            Salvar alterações
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- GAVETA CADASTRAR USUÁRIO -->
+
+<div class="drawer" id="drawerUser">
+
+    <div class="drawer-head">
+
+        <div>
+            <h3>Cadastrar usuário</h3>
+
+            <div class="drawer-sub">
+                Cadastre um novo usuário no sistema.
+            </div>
+        </div>
+
+        <button
+            class="drawer-close"
+            id="btnCloseUser">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="drawer-body">
+
+        <div class="field">
+
+            <label for="uName">
+                Nome completo
+            </label>
+
+            <input
+                type="text"
+                id="uName"
+                placeholder="Ex: Carlos Almeida" />
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="uLogin">
+                Usuário
+            </label>
+
+            <input
+                type="text"
+                id="uLogin"
+                placeholder="Ex: carlos" />
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="uProfile">
+                Perfil de acesso
+            </label>
+
+            <select id="uProfile">
+
+                <option value="usuario">
+                    Usuário
+                </option>
+
+                <option value="tecnico">
+                    Técnico de TI
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="uSector">
+                Setor
+            </label>
+
+            <input
+                type="text"
+                id="uSector"
+                placeholder="Ex: Financeiro" />
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="uFunction">
+                Função
+            </label>
+
+            <input
+                type="text"
+                id="uFunction"
+                placeholder="Ex: Analista Financeiro" />
+
+        </div>
+
+
+        <div class="user-register-info">
+
+            A senha inicial será definida pelo sistema.
+            No primeiro acesso, o usuário deverá realizar
+            a troca da senha.
+
+        </div>
+
+
+        <div
+            class="user-register-error"
+            id="userRegisterError">
+        </div>
+
+    </div>
+
+
+    <div class="drawer-foot">
+
+        <button
+            type="button"
+            class="drawer-cancel"
+            id="btnCancelUser">
+
+            Fechar
+
+        </button>
+
+
+        <button
+            type="button"
+            class="drawer-submit"
+            id="btnSubmitUser">
+
+            Cadastrar
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- GAVETA USUÁRIOS CADASTRADOS -->
+
+<div class="drawer" id="drawerUsers">
+
+    <div class="drawer-head">
+
+        <div>
+            <h3>Usuários cadastrados</h3>
+
+            <div class="drawer-sub">
+                Consulte os usuários cadastrados no sistema.
+            </div>
+        </div>
+
+        <button
+            class="drawer-close"
+            id="btnCloseUsers">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="drawer-body">
+
+        <div class="users-count">
+            <strong>4</strong> usuários cadastrados
+        </div>
+
+
+        <div class="field">
+
+            <label for="userSearch">
+                Buscar usuário
+            </label>
+
+            <input
+                type="text"
+                id="userSearch"
+                placeholder="Nome ou usuário..." />
+
+        </div>
+
+
+        <div class="users-list">
+
+            <!-- USUÁRIO 1 -->
+
+            <div class="user-item">
+
+                <div class="user-item-avatar">
+                    RS
+                </div>
+
+                <div class="user-item-info">
+
+                    <div class="user-item-name">
+                        Rafael Souza
+                    </div>
+
+                    <div class="user-item-login">
+                        rafael
+                    </div>
+
+                    <div class="user-item-details">
+                        Suporte Técnico · Analista de Suporte
+                    </div>
+                    
+
+                </div>
+
+                <span class="user-role tecnico">
+                    Técnico de TI
+                </span>
+
+                <button type="button"class="btn-remove-user">
+                   Remover
+                </button>
+
+            </div>
+
+
+            <!-- USUÁRIO 2 -->
+
+            <div class="user-item">
+
+                <div class="user-item-avatar">
+                    DF
+                </div>
+
+                <div class="user-item-info">
+
+                    <div class="user-item-name">
+                        Diego Ferreira
+                    </div>
+
+                    <div class="user-item-login">
+                        diego
+                    </div>
+
+                    <div class="user-item-details">
+                        Infraestrutura de Redes · Analista de Redes
+                    </div>
+
+                </div>
+
+                <span class="user-role tecnico">
+                    Técnico de TI
+                </span>
+
+                <button type="button"class="btn-remove-user">
+                   Remover
+                </button>
+
+            </div>
+
+
+            <!-- USUÁRIO 3 -->
+
+            <div class="user-item">
+
+                <div class="user-item-avatar">
+                    F
+                </div>
+
+                <div class="user-item-info">
+
+                    <div class="user-item-name">
+                        Fulano
+                    </div>
+
+                    <div class="user-item-login">
+                        fulano
+                    </div>
+
+                    <div class="user-item-details">
+                        Coordenação de Medicina · Coordenador
+                    </div>
+
+                </div>
+
+                <span class="user-role usuario">
+                    Usuário
+                </span>
+
+                <button type="button"class="btn-remove-user">
+                   Remover
+                </button>
+
+            </div>
+
+
+            <!-- USUÁRIO 4 -->
+
+            <div class="user-item">
+
+                <div class="user-item-avatar">
+                    JP
+                </div>
+
+                <div class="user-item-info">
+
+                    <div class="user-item-name">
+                        João Pedro Lima
+                    </div>
+
+                    <div class="user-item-login">
+                        joao
+                    </div>
+
+                    <div class="user-item-details">
+                        Financeiro · Analista Financeiro
+                    </div>
+
+                </div>
+
+                <span class="user-role usuario">
+                    Usuário
+                </span>
+
+                <button type="button"class="btn-remove-user">
+                   Remover
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-foot">
+
+        <button
+            type="button"
+            class="drawer-cancel"
+            id="btnCancelUsers">
+
+            Fechar
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- GAVETA MINHA CONTA -->
+<div class="drawer" id="drawerAccount">
+
+    <div class="drawer-head">
+        <div>
+            <h3>Minha conta</h3>
+
+            <div class="drawer-sub">
+                Informações da sua conta no sistema.
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="drawer-close"
+            id="btnCloseAccount">
+            ×
+        </button>
+    </div>
+
+
+    <div class="drawer-body">
+
+        <!-- PERFIL -->
+        <div class="account-profile">
+
+            <div class="account-avatar">
+                MS
+            </div>
+
+            <div>
+                <div class="account-name">
+                    Usuário
+                </div>
+
+                <div class="account-role">
+                    Técnico de TI
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- NOME -->
+        <div class="field">
+
+            <label>
+                Nome
+            </label>
+
+            <div class="detail-value">
+                Usuário
+            </div>
+
+        </div>
+
+
+        <!-- USUÁRIO -->
+        <div class="field">
+
+            <label>
+                Usuário
+            </label>
+
+            <div class="detail-value">
+                usuario
+            </div>
+
+        </div>
+
+
+        <!-- PERFIL -->
+        <div class="field">
+
+            <label>
+                Perfil
+            </label>
+
+            <div class="detail-value">
+                Técnico de TI
+            </div>
+
+        </div>
+
+
+        <!-- SETOR -->
+        <div class="field">
+
+            <label>
+                Setor
+            </label>
+
+            <div class="detail-value">
+                Tecnologia da Informação
+            </div>
+
+        </div>
+
+
+        <!-- FUNÇÃO -->
+        <div class="field">
+
+            <label>
+                Função
+            </label>
+
+            <div class="detail-value">
+                Técnico de Suporte
+            </div>
+
+        </div>
+
+
+        <!-- SEGURANÇA -->
+        <div class="account-password-section">
+
+            <div class="account-password-title">
+                Segurança
+            </div>
+
+            <div class="account-password-text">
+                Altere sua senha de acesso ao sistema.
+            </div>
+
+            <button
+                type="button"
+                class="btn-change-password"
+                id="btnChangePassword">
+                Alterar senha
+            </button>
+
+        </div>
+
+
+        <!-- FORMULÁRIO DE ALTERAÇÃO DE SENHA -->
+        <div
+            class="password-form"
+            id="passwordForm">
+
+            <div class="field">
+
+                <label for="currentPassword">
+                    Senha atual
+                </label>
+
+                <input
+                    type="password"
+                    id="currentPassword"
+                    placeholder="Digite sua senha atual" />
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="newPassword">
+                    Nova senha
+                </label>
+
+                <input
+                    type="password"
+                    id="newPassword"
+                    placeholder="Digite a nova senha" />
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="confirmPassword">
+                    Confirmar nova senha
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Digite novamente a nova senha" />
+
+            </div>
+
+
+            <div class="password-actions">
+
+                <button
+                    type="button"
+                    class="btn-save-password"
+                    id="btnSavePassword">
+                    Salvar nova senha
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-cancel-password"
+                    id="btnCancelPassword">
+                    Cancelar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RODAPÉ -->
+    <div class="drawer-foot">
+
+        <button
+            type="button"
+            class="drawer-cancel"
+            id="btnCancelAccount">
+            Fechar
+        </button>
+
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="~/js/dashboard.js"></script>
+</body>
+
+</html>

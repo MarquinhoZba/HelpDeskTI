@@ -1,0 +1,1418 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #0E1420;
+    color: #EDF1F7;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+}
+
+
+.app {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+
+.sidebar {
+    background: #161D2B;
+    border-right: 1px solid #202A3C;
+
+    padding: 22px 16px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 28px;
+}
+
+.logo-sidebar {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 10px;
+
+    object-fit: contain;
+
+    background: #ffffff;
+}
+
+.brand-text {
+    color: #EDF1F7;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.brand-sub {
+    color: #8D9AB3;
+
+    font-size: 11px;
+
+    margin-top: 2px;
+}
+
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-item {
+    padding: 10px 11px;
+
+    border-radius: 8px;
+
+    color: #8D9AB3;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background: #1D2536;
+    color: #EDF1F7;
+}
+
+.nav-item.active {
+    background: rgba(47, 216, 196, 0.14);
+    color: #2FD8C4;
+}
+
+.nav-icon {
+    display: inline-block;
+
+    width: 22px;
+
+    font-size: 14px;
+}
+
+
+.main {
+    padding: 26px 32px 60px;
+
+    max-width: 1180px;
+
+    width: 100%;
+}
+
+
+.topbar {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+
+    gap: 16px;
+
+    flex-wrap: wrap;
+}
+
+.page-title {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.page-sub {
+    margin-top: 5px;
+
+    color: #8D9AB3;
+
+    font-size: 13px;
+}
+
+.clock {
+    color: #5C6B85;
+
+    font-size: 12px;
+}
+
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+
+    margin-bottom: 22px;
+}
+
+.stat-card {
+    background: #161D2B;
+
+    border: 1px solid #2A3346;
+    border-radius: 10px;
+
+    padding: 18px;
+}
+
+.stat-num {
+    font-size: 26px;
+    font-weight: 700;
+
+    color: #EDF1F7;
+
+    line-height: 1;
+}
+
+.stat-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-top: 10px;
+
+    color: #8D9AB3;
+
+    font-size: 12px;
+}
+
+.stat-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+.stat-dot.aberto {
+    background: #4FA8E8;
+}
+
+.stat-dot.andamento {
+    background: #E8B34F;
+}
+
+.stat-dot.aguardando {
+    background: #9B7FE0;
+}
+
+.stat-dot.resolvido {
+    background: #4FE8A0;
+}
+
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    margin-bottom: 14px;
+
+    flex-wrap: wrap;
+}
+
+.search {
+    flex: 1;
+
+    min-width: 260px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #2A3346;
+    border-radius: 8px;
+
+    background: #161D2B;
+    color: #EDF1F7;
+
+    outline: none;
+
+    font-size: 13px;
+}
+
+.search::placeholder {
+    color: #5C6B85;
+}
+
+.search:focus {
+    border-color: #2FD8C4;
+}
+
+.filter {
+    padding: 10px 12px;
+
+    border: 1px solid #2A3346;
+    border-radius: 8px;
+
+    background: #161D2B;
+    color: #8D9AB3;
+
+    outline: none;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.filter:focus {
+    border-color: #2FD8C4;
+}
+
+
+.btn-export {
+    padding: 10px 14px;
+
+    border: 1px solid #2A3346;
+    border-radius: 8px;
+
+    background: #1D2536;
+    color: #8D9AB3;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.btn-export:hover {
+    background: #242E42;
+    color: #EDF1F7;
+}
+
+
+.table-wrap {
+    overflow-x: auto;
+
+    background: #161D2B;
+
+    border: 1px solid #2A3346;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 720px;
+}
+
+thead {
+    background: #1D2536;
+}
+
+th {
+    padding: 12px 14px;
+
+    text-align: left;
+
+    color: #8D9AB3;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid #2A3346;
+}
+
+td {
+    padding: 14px;
+
+    color: #EDF1F7;
+
+    font-size: 12px;
+
+    border-bottom: 1px solid #202A3C;
+
+    vertical-align: top;
+}
+
+tbody tr:hover {
+    background: #1D2536;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.id-cell {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #EDF1F7;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 11px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+
+.ticket-title {
+    margin-top: 6px;
+
+    color: #EDF1F7;
+
+    font-size: 12px;
+}
+
+.ticket-meta {
+    margin-top: 4px;
+
+    color: #5C6B85;
+
+    font-size: 11px;
+}
+
+
+.time-mono {
+    color: #8D9AB3;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 11px;
+}
+
+
+.status-dot.aberto {
+    background: #4FA8E8;
+}
+
+.status-dot.andamento {
+    background: #E8B34F;
+}
+
+.status-dot.aguardando {
+    background: #9B7FE0;
+}
+
+.status-dot.resolvido {
+    background: #4FE8A0;
+}
+
+
+.badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+.prioridade-alta {
+    color: #E8804F;
+    background: rgba(232, 128, 79, 0.14);
+}
+
+.prioridade-baixa {
+    color: #4FA8E8;
+    background: rgba(79, 168, 232, 0.14);
+}
+
+.prioridade-media {
+    color: #E8B34F;
+    background: rgba(232, 179, 79, 0.14);
+}
+
+.prioridade-critica {
+    color: #F87171;
+    background: rgba(248, 113, 113, 0.14);
+}
+
+
+.status-andamento {
+    color: #E8B34F;
+    background: rgba(232, 179, 79, 0.14);
+}
+
+.status-aberto {
+    color: #4FA8E8;
+    background: rgba(79, 168, 232, 0.14);
+}
+
+
+.btn-new {
+    width: 100%;
+
+    margin-top: 18px;
+    padding: 11px 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #2FD8C4;
+    color: #0E1420;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.btn-new:hover {
+    background: #28c4b2;
+}
+
+
+.btn-ghost {
+    width: 100%;
+
+    margin-top: 6px;
+    padding: 10px 12px;
+
+    border: 1px solid #2A3346;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #8D9AB3;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.btn-ghost:hover {
+    background: #1D2536;
+    color: #EDF1F7;
+}
+
+
+.sidebar-foot {
+    margin-top: auto;
+
+    padding-top: 20px;
+}
+
+.user-chip {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 10px;
+
+    border: 1px solid #2A3346;
+    border-radius: 8px;
+
+    background: #1D2536;
+}
+
+.user-avatar {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #2FD8C4;
+    color: #0E1420;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.user-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.user-name {
+    color: #EDF1F7;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.user-role {
+    margin-top: 3px;
+
+    color: #5C6B85;
+
+    font-size: 10px;
+}
+
+.user-actions {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 2px;
+}
+
+.btn-account {
+    border: none;
+
+    background: transparent;
+
+    color: #8D9AB3;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+.btn-account:hover {
+    color: #2FD8C4;
+}
+
+/* =========================================
+   PAINEL NOVO CHAMADO
+   ========================================= */
+
+.overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.2s,
+        visibility 0.2s;
+
+    z-index: 90;
+}
+
+
+.overlay.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* Painel */
+
+.drawer {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    width: 460px;
+    max-width: 100%;
+
+    height: 100vh;
+
+    background: #161D2B;
+
+    border-left: 1px solid #2A3346;
+
+    display: flex;
+    flex-direction: column;
+
+    transform: translateX(100%);
+
+    transition: transform 0.25s ease;
+
+    z-index: 100;
+}
+
+
+.drawer.show {
+    transform: translateX(0);
+}
+
+
+/* Cabeçalho */
+
+.drawer-head {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 24px;
+
+    border-bottom: 1px solid #2A3346;
+}
+
+
+.drawer-head h3 {
+    margin: 0;
+
+    color: #EDF1F7;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.drawer-sub {
+    margin-top: 5px;
+
+    color: #8D9AB3;
+
+    font-size: 12px;
+}
+
+
+.drawer-close {
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid #2A3346;
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #8D9AB3;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+.drawer-close:hover {
+    background: #1D2536;
+
+    color: #EDF1F7;
+}
+
+
+/* Corpo */
+
+.drawer-body {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 24px;
+}
+
+
+/* Campos do drawer */
+
+.drawer-body .field {
+    margin-bottom: 18px;
+}
+
+
+.drawer-body .field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #C7D0DA;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+.drawer-body input,
+.drawer-body select,
+.drawer-body textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    border: 1px solid #2A3346;
+    border-radius: 8px;
+
+    background: #1D2536;
+
+    color: #EDF1F7;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 13px;
+}
+
+
+.drawer-body input:focus,
+.drawer-body select:focus,
+.drawer-body textarea:focus {
+    border-color: #2FD8C4;
+}
+
+
+.drawer-body textarea {
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+
+.drawer-body input::placeholder,
+.drawer-body textarea::placeholder {
+    color: #5C6B85;
+}
+
+
+/* Duas colunas */
+
+.field-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+
+/* Rodapé */
+
+.drawer-foot {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 18px 24px;
+
+    border-top: 1px solid #2A3346;
+}
+
+
+.drawer-cancel,
+.drawer-submit {
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.drawer-cancel {
+    border: 1px solid #2A3346;
+
+    background: transparent;
+
+    color: #8D9AB3;
+}
+
+
+.drawer-cancel:hover {
+    background: #1D2536;
+
+    color: #EDF1F7;
+}
+
+
+.drawer-submit {
+    border: none;
+
+    background: #2FD8C4;
+
+    color: #0E1420;
+}
+
+
+.drawer-submit:hover {
+    background: #28C4B2;
+}
+
+
+/* Responsivo */
+
+@media (max-width: 600px) {
+
+    .drawer {
+        width: 100%;
+    }
+
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+.detail-value {
+    color: #EDF1F7;
+
+    font-size: 13px;
+}
+
+
+.detail-desc {
+    padding: 12px;
+
+    background: #1D2536;
+
+    border: 1px solid #2A3346;
+    border-radius: 8px;
+
+    color: #C7D0DA;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+}
+
+
+.notes-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.note-item {
+    padding: 11px;
+
+    background: #1D2536;
+
+    border: 1px solid #2A3346;
+
+    border-radius: 8px;
+}
+
+
+.note-author {
+    color: #2FD8C4;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+.note-text {
+    margin-top: 5px;
+
+    color: #C7D0DA;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+#fNote {
+    min-height: 100px;
+
+    margin-top: 10px;
+
+    resize: vertical;
+}
+
+.ticket-row {
+    cursor: pointer;
+}
+
+.ticket-row:hover {
+    background: #202A3C;
+}
+
+/* =========================================
+   USUÁRIOS CADASTRADOS
+   ========================================= */
+
+.users-count {
+    margin-bottom: 18px;
+    color: #8D9AB3;
+    font-size: 12px;
+}
+
+.users-count strong {
+    color: #EDF1F7;
+    font-size: 16px;
+}
+
+
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.user-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #1D2536;
+    border: 1px solid #2A3346;
+    border-radius: 9px;
+}
+
+
+.user-item-avatar {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #27344A;
+    color: #2FD8C4;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+.user-item-info {
+    min-width: 0;
+    flex: 1;
+}
+
+
+.user-item-name {
+    color: #EDF1F7;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.user-item-login {
+    margin-top: 2px;
+    color: #8D9AB3;
+    font-size: 11px;
+}
+
+
+.user-item-details {
+    margin-top: 5px;
+    color: #C7D0DA;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+
+.user-role {
+    flex-shrink: 0;
+
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+.user-role.tecnico {
+    color: #2FD8C4;
+    background: rgba(47, 216, 196, 0.10);
+    border: 1px solid rgba(47, 216, 196, 0.20);
+}
+
+
+.user-role.usuario {
+    color: #8D9AB3;
+    background: #27344A;
+    border: 1px solid #2A3346;
+}
+
+
+/* Busca de usuários */
+
+#userSearch {
+    width: 100%;
+}
+
+
+/* Responsividade */
+
+@media (max-width: 600px) {
+
+    .user-item {
+        align-items: flex-start;
+    }
+
+    .user-role {
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+
+    .user-item-details {
+        font-size: 9px;
+    }
+
+}
+
+/* =========================================
+   AÇÕES DO USUÁRIO
+   ========================================= */
+
+.user-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+
+.btn-remove-user {
+    padding: 5px 8px;
+
+    border: 1px solid #3A4356;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #8D9AB3;
+
+    font-size: 10px;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.btn-remove-user:hover {
+    background: #2A3346;
+    color: #EDF1F7;
+}
+
+/* =========================================
+   MINHA CONTA
+   ========================================= */
+
+.account-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    margin-bottom: 22px;
+
+    background: #1D2536;
+    border: 1px solid #2A3346;
+    border-radius: 9px;
+}
+
+
+.account-avatar {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #27344A;
+    color: #2FD8C4;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.account-name {
+    color: #EDF1F7;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.account-role {
+    margin-top: 3px;
+    color: #8D9AB3;
+    font-size: 11px;
+}
+
+
+/* =========================================
+   SEGURANÇA
+   ========================================= */
+
+.account-password-section {
+    margin-top: 24px;
+    padding: 14px;
+
+    background: #1D2536;
+    border: 1px solid #2A3346;
+    border-radius: 9px;
+}
+
+
+.account-password-title {
+    color: #EDF1F7;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.account-password-text {
+    margin-top: 5px;
+    margin-bottom: 12px;
+
+    color: #8D9AB3;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+.btn-change-password {
+    padding: 8px 12px;
+
+    border: 1px solid #2A3346;
+    border-radius: 7px;
+
+    background: #27344A;
+    color: #EDF1F7;
+
+    font-size: 11px;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.btn-change-password:hover {
+    background: #2A3346;
+    border-color: #3A465D;
+}
+
+
+/* =========================================
+   FORMULÁRIO DE SENHA
+   ========================================= */
+
+.password-form {
+    margin-top: 16px;
+}
+
+.password-form {
+    display: none;
+    margin-top: 16px;
+}
+
+.password-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.btn-save-password,
+.btn-cancel-password {
+    padding: 8px 12px;
+    border-radius: 7px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.btn-save-password {
+    border: 1px solid #2FD8C4;
+    background: #2FD8C4;
+    color: #0E1420;
+    font-weight: 600;
+}
+
+.btn-save-password:hover {
+    background: #28C4B2;
+    border-color: #28C4B2;
+}
+
+.btn-cancel-password {
+    border: 1px solid #2A3346;
+    background: #27344A;
+    color: #EDF1F7;
+}
+
+.btn-cancel-password:hover {
+    background: #2A3346;
+}
+
+/* =========================================
+   MINHA CONTA
+   ========================================= */
+
+.account-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    margin-bottom: 22px;
+
+    background: #1D2536;
+    border: 1px solid #2A3346;
+    border-radius: 9px;
+}
+
+.account-avatar {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #27344A;
+    color: #2FD8C4;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.account-name {
+    color: #EDF1F7;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.account-role {
+    margin-top: 3px;
+    color: #8D9AB3;
+    font-size: 11px;
+}
+
+
+/* =========================================
+   SEGURANÇA
+   ========================================= */
+
+.account-password-section {
+    margin-top: 24px;
+    padding: 14px;
+
+    background: #1D2536;
+    border: 1px solid #2A3346;
+    border-radius: 9px;
+}
+
+.account-password-title {
+    color: #EDF1F7;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.account-password-text {
+    margin-top: 5px;
+    margin-bottom: 12px;
+
+    color: #8D9AB3;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.btn-change-password {
+    padding: 8px 12px;
+
+    border: 1px solid #2A3346;
+    border-radius: 7px;
+
+    background: #27344A;
+    color: #EDF1F7;
+
+    font-size: 11px;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-change-password:hover {
+    background: #2A3346;
+    border-color: #3A465D;
+}
+
+
+/* =========================================
+   FORMULÁRIO DE SENHA
+   ========================================= */
+
+.password-form {
+    display: none;
+    margin-top: 16px;
+}
+
+.password-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.btn-save-password,
+.btn-cancel-password {
+    padding: 8px 12px;
+    border-radius: 7px;
+
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.btn-save-password {
+    border: 1px solid #2FD8C4;
+
+    background: #2FD8C4;
+    color: #0E1420;
+
+    font-weight: 600;
+}
+
+.btn-save-password:hover {
+    background: #28C4B2;
+    border-color: #28C4B2;
+}
+
+.btn-cancel-password {
+    border: 1px solid #2A3346;
+
+    background: #27344A;
+    color: #EDF1F7;
+}
+
+.btn-cancel-password:hover {
+    background: #2A3346;
+}
+

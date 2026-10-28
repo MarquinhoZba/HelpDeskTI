@@ -1,0 +1,78 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HelpDesk.TI</title>
+    <link rel="stylesheet" href="~/css/login.css" />
+
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-brand">
+
+            <div class="login-logo">
+                <img src="~/images/logUni.jpg" alt="Logo da Helpdesk.TI" />
+            </div>
+
+            <div>
+                <div class="brand-text">helpdesk.ti</div>
+                <div class="brand-sub">UniFamec · console v1.0</div>
+            </div>
+
+        </div>
+
+        <div class="login-title">
+            Entrar no sistema
+        </div>
+
+        <div class="login-sub">
+            Informe seu usuário e senha para acessar.
+        </div>
+
+        <div class="field">
+            
+            <label for="loginUser">
+                USUÁRIO
+            </label>
+
+            <input type="text" id="loginUser" name="loginUser" placeholder="Informe seu usuário" />
+
+        </div>
+
+        <div class="field">
+
+            <label for="loginPass">
+                SENHA
+            </label>
+
+            <input type="password" id="loginPass" name="loginPass" placeholder="••••••" autocomplete="current-password" />
+
+        </div>
+
+        <button type="button" class="btn-login">
+            Entrar
+        </button>
+
+        <div class="login-error">
+        
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
